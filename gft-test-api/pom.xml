@@ -62,7 +62,7 @@
             <plugin>
                 <groupId>org.openapitools</groupId>
                 <artifactId>openapi-generator-maven-plugin</artifactId>
-                <version>5.3.0</version>
+                <version>6.0.0</version>
                 <executions>
                     <execution>
                         <id>generate-api-code</id>
@@ -70,27 +70,20 @@
                             <goal>generate</goal>
                         </goals>
                         <configuration>
+                            <library>spring-boot</library>
                             <inputSpec>${project.basedir}/src/main/resources/openapi_rest.yaml</inputSpec>
-                            <generateSupportingFiles>true</generateSupportingFiles>
                             <generatorName>spring</generatorName>
-                            <strictSpec>true</strictSpec>
                             <generateApiTests>false</generateApiTests>
                             <generateModelTests>false</generateModelTests>
                             <configOptions>
-                                <controllerThrowsExceptions>java.io.IOException,com.example.NotFoundException</controllerThrowsExceptions>
-                                <interfaceOnly>true</interfaceOnly>
-                                <skipDefaultInterface>true</skipDefaultInterface>
-                                <useBeanValidation>true</useBeanValidation>
-                                <useClassLevelBeanValidation>false</useClassLevelBeanValidation>
-                                <useTags>true</useTags>
-                                <java17>true</java17>
-                                <useOptional>false</useOptional>
-                                <hideGenerationTimestamp>true</hideGenerationTimestamp>
-                                <dateLibrary>java17</dateLibrary>
-                                <bigDecimalAsString>true</bigDecimalAsString>
-                                <useBeanValidation>true</useBeanValidation>
+                                <supportingFilesToGenerate>
+                                    ApiUtil.java
+                                </supportingFilesToGenerate>
                                 <apiPackage>com.gft.inditex.api.rest</apiPackage>
                                 <modelPackage>com.gft.inditex.api.model</modelPackage>
+                                <delegatePattern>true</delegatePattern>
+                                <serializableModel>true</serializableModel>
+                                <useTags>true</useTags>
                             </configOptions>
                             <typeMappings>
                                 <typeMapping>OffsetDateTime=LocalDateTime</typeMapping>
