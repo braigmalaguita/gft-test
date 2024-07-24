@@ -1,0 +1,82 @@
+openapi: 3.0.3
+info:
+  title: Swagger Price REST API - OpenAPI 3.0
+  description: |-
+    Alicia Open Api Hexagonal Arquitecture test.
+
+    _Test for GFT/Inditex_
+  contact:
+    email: aliciaflorido33@gmail.com
+  version: 1.0.11
+servers:
+  - url: localhost:8080
+tags:
+  - name: price
+    description: Price RestFul api
+paths:
+  /price:
+    get:
+      tags:
+        - price
+      summary: Find Prices by params
+      description: Find Prices by params
+      operationId: findPricesByParams
+      parameters:
+        - name: status
+          in: query
+          description: Status values that need to be considered for filter
+          required: false
+          explode: true
+          schema:
+            type: string
+            default: available
+            enum:
+              - available
+              - pending
+              - sold
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Price'
+        '400':
+          description: Invalid status value
+components:
+  schemas:
+    Price:
+      required:
+        - name
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          example: 10
+        name:
+          type: string
+          example: doggie
+        category:
+          $ref: '#/components/schemas/Brand'
+    Brand:
+      properties:
+        id:
+          type: integer
+          format: int64
+          example: 10
+        name:
+          type: string
+          example: zara
+  requestBodies:
+    Price:
+      description: Pet object that needs to be added to the store
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Price'
+        application/xml:
+          schema:
+            $ref: '#/components/schemas/Price'

@@ -3,13 +3,13 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <artifactId>alicia.test</artifactId>
+        <artifactId>gft-test</artifactId>
         <groupId>com.gft.inditex</groupId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
-    <artifactId>alicia.test.service</artifactId>
+    <artifactId>gft-test-service</artifactId>
     <packaging>jar</packaging>
 
-    <name>alicia.test.service</name>
+    <name>gft-test-service</name>
 </project>
