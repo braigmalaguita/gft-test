@@ -22,18 +22,25 @@ paths:
       description: Find Prices by params
       operationId: findPricesByParams
       parameters:
-        - name: status
+        - name: date
           in: query
-          description: Status values that need to be considered for filter
-          required: false
-          explode: true
+          description: Apply date
+          required: true
           schema:
             type: string
-            default: available
-            enum:
-              - available
-              - pending
-              - sold
+            format: date
+        - name: productId
+          in: query
+          description: Product Id
+          required: true
+          schema:
+            type: integer
+        - name: brandId
+          in: query
+          description: Brand Id
+          required: true
+          schema:
+            type: integer
       responses:
         '200':
           description: successful operation
@@ -42,41 +49,43 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Price'
+                  $ref: '#/components/schemas/PriceDto'
         '400':
           description: Invalid status value
 components:
   schemas:
-    Price:
+    PriceDto:
       required:
         - name
       type: object
       properties:
         id:
           type: integer
-          format: int64
           example: 10
-        name:
+        product:
+          $ref: '#/components/schemas/ProductDto'
+        brand:
+          $ref: '#/components/schemas/BrandDto'
+        applyDate:
           type: string
-          example: doggie
-        category:
-          $ref: '#/components/schemas/Brand'
-    Brand:
+          format: date
+        price:
+          type: number
+          format: double
+          example: 10.18
+    BrandDto:
       properties:
         id:
           type: integer
-          format: int64
           example: 10
         name:
           type: string
           example: zara
-  requestBodies:
-    Price:
-      description: Pet object that needs to be added to the store
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Price'
-        application/xml:
-          schema:
-            $ref: '#/components/schemas/Price'
+    ProductDto:
+      properties:
+        id:
+          type: integer
+          example: 10
+        name:
+          type: string
+          example: camisa
