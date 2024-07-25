@@ -13,6 +13,24 @@
     <packaging>jar</packaging>
 
     <dependencies>
+        <!--Spring boot related dependencies-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.tomcat.embed</groupId>
+            <artifactId>tomcat-embed-core</artifactId>
+        </dependency>
         <!--Open api related dependencies-->
         <dependency>
             <groupId>io.swagger.core.v3</groupId>
@@ -73,24 +91,44 @@
                             <library>spring-boot</library>
                             <inputSpec>${project.basedir}/src/main/resources/openapi_rest.yaml</inputSpec>
                             <generatorName>spring</generatorName>
+                            <library>spring-boot</library>
                             <generateApiTests>false</generateApiTests>
                             <generateModelTests>false</generateModelTests>
+                            <generateApiDocumentation>false</generateApiDocumentation>
+                            <generateModelDocumentation>false</generateModelDocumentation>
+                            <generateApis>true</generateApis>
+                            <generateModels>true</generateModels>
                             <configOptions>
                                 <supportingFilesToGenerate>
                                     ApiUtil.java
                                 </supportingFilesToGenerate>
+                                <basePackage>com.gft.inditex.api</basePackage>
+                                <configPackage>com.gft.inditex.api.config</configPackage>
                                 <apiPackage>com.gft.inditex.api.rest</apiPackage>
                                 <modelPackage>com.gft.inditex.api.model</modelPackage>
-                                <delegatePattern>true</delegatePattern>
                                 <serializableModel>true</serializableModel>
                                 <useTags>true</useTags>
+                                <useSpringController>true</useSpringController>
+                                <delegatePattern>true</delegatePattern>
                             </configOptions>
-                            <typeMappings>
-                                <typeMapping>OffsetDateTime=LocalDateTime</typeMapping>
-                            </typeMappings>
-                            <importMappings>
-                                <importMapping>java.time.OffsetDateTime=java.time.LocalDateTime</importMapping>
-                            </importMappings>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-antrun-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <phase>process-sources</phase>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                        <configuration>
+                            <target>
+                                <!-- remove the unwanted generated testcases by the spring generator of openapi -->
+                                <delete dir="${project.build.directory}/generated-sources/openapi/src/test" />
+                            </target>
                         </configuration>
                     </execution>
                 </executions>

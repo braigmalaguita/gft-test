@@ -1,9 +1,13 @@
-package com.gft.inditex.alicia.test;
+package com.gft.inditex.boot;
 
 import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
+@EnableAutoConfiguration
+@ComponentScan(basePackages = {"com.gft.inditex"})
 public class Application {
 
 	public static void main(String[] args) {

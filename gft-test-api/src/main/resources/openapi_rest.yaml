@@ -6,10 +6,12 @@ info:
 
     _Test for GFT/Inditex_
   contact:
+    name: Alicia Florido
     email: aliciaflorido33@gmail.com
   version: 1.0.11
 servers:
-  - url: localhost:8080
+  - url: 'http://localhost:8080'
+    description: dev
 tags:
   - name: price
     description: Price RestFul api
@@ -28,7 +30,8 @@ paths:
           required: true
           schema:
             type: string
-            format: date
+            format: date-time
+            example: '2017-07-21T17:32:28Z'
         - name: productId
           in: query
           description: Product Id
