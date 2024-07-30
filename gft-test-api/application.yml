@@ -3,3 +3,21 @@ logging:
     root: INFO
     org.springframework.web: DEBUG
     org.hibernate: ERROR
+spring:
+  datasource:
+    url: jdbc:h2:file:/alicia.test.domain/src/main/resources/demo.sql
+    username: sa
+    password:
+    driverClassName: org.h2.Driver
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    show-sql: true
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.H2Dialect
+        ddl-auto: update
+
+  h2:
+    console:
+      enabled: true
+      path: /h2-ui
