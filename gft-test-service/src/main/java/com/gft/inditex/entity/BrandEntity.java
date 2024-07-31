@@ -3,6 +3,8 @@ package com.gft.inditex.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.io.Serializable;
+
 @Getter
 @Setter
 @EqualsAndHashCode
@@ -11,7 +13,7 @@ import lombok.*;
 @ToString
 @Entity
 @Table(name = "BRAND")
-public class BrandEntity {
+public class BrandEntity implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
