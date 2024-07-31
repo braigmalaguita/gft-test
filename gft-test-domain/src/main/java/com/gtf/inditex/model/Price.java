@@ -17,6 +17,6 @@ public class Price {
     private Date startDate;
     private Date endDate;
     private Integer priceList;
-    private Boolean priority;
+    private Integer priority;
     private String curr;
 }

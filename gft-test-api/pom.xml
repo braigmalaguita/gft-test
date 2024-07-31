@@ -129,6 +129,7 @@
                                 <useTags>true</useTags>
                                 <useSpringController>true</useSpringController>
                                 <delegatePattern>true</delegatePattern>
+                                <dateLibrary>legacy</dateLibrary>
                             </configOptions>
                         </configuration>
                     </execution>

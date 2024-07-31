@@ -37,7 +37,7 @@ public class PriceEntity implements Serializable {
     @Column(name = "price_list")
     private Integer priceList;
 
-    private Boolean priority;
+    private Integer priority;
 
     private String curr;
 

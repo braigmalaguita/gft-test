@@ -7,8 +7,10 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.time.OffsetDateTime;
-import java.util.List;
+import java.util.*;
+import java.util.stream.Collectors;
+
+import static java.util.stream.Collectors.groupingBy;
 
 @Service
 @Slf4j
@@ -18,11 +20,34 @@ public class PriceServiceImpl implements PriceService {
     PriceDao dao;
 
     @Override
-    public List<Price> findPricesByParams(OffsetDateTime date, Integer productId, Integer brandId) {
-        //TODO intervalo fechasm prioridad
+    public Price findPricesByParams(Date date, Integer productId, Integer brandId) {
         List<Price> result =  dao.findByParams(productId, brandId);
-        log.info(result.toString());
-        return result;
+        TimeZone.setDefault(TimeZone.getTimeZone("UTC"));
+        //TODO deprecado
+        Date promptedDate = new Date(String.valueOf(date));
+        List<Price> filtered = dateFilter(promptedDate, result);
+        log.info(filtered.toString());
+        filtered = priorityFilter(filtered);
+        log.info(filtered.toString());
+        return Objects.nonNull(filtered) && filtered.isEmpty() ? filtered.get(0) : null;
+    }
 
+    List<Price> dateFilter(Date date, List<Price> prices) {
+        return prices.stream().filter(e->
+                date.after(e.getStartDate()) && date.before(e.getEndDate()
+                )).collect(Collectors.toList());
+    }
+
+    List<Price> priorityFilter(List<Price> prices) {
+        if (prices.size() > 1) {
+            prices = prices.stream()
+                    .collect(groupingBy(Price::getPriority))
+                    .entrySet()
+                    .stream()
+                    .max(Comparator.comparing(Map.Entry::getKey))
+                    .get()
+                    .getValue();
+        }
+        return prices;
     }
 }

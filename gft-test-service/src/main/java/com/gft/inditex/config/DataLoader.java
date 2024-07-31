@@ -30,9 +30,9 @@ public class DataLoader implements CommandLineRunner {
         // Load initial data into the database
         ProductEntity product = productRepository.save(new ProductEntity(35455, "producto"));
         BrandEntity brand = brandRepository.save( new BrandEntity(1, "zara"));
-        priceRepository.save(new PriceEntity(1, product, brand , 25.50, simpleDateFormat.parse("2020-06-14 00:00:00"), simpleDateFormat.parse("2020-06-14 00:00:00"), 1,false, "EUR"));
-        priceRepository.save(new PriceEntity(2, product, brand , 25.45, simpleDateFormat.parse("2020-06-14 15:00:00"), simpleDateFormat.parse("2020-06-14 18:30:00"), 1,true, "EUR"));
-        priceRepository.save(new PriceEntity(3, product, brand , 30.50, simpleDateFormat.parse("2020-06-15 00:00:00"), simpleDateFormat.parse("2020-06-15 11:00:00"), 1,true, "EUR"));
-        priceRepository.save(new PriceEntity(4, product, brand , 38.95, simpleDateFormat.parse("2020-06-15 16:00:00"), simpleDateFormat.parse("2020-12-31 23:59:59"), 1,true, "EUR"));
+        priceRepository.save(new PriceEntity(1, product, brand , 25.50, simpleDateFormat.parse("2020-06-14 00:00:00"), simpleDateFormat.parse("2020-12-31 00:00:00"), 1,0, "EUR"));
+        priceRepository.save(new PriceEntity(2, product, brand , 25.45, simpleDateFormat.parse("2020-06-14 15:00:00"), simpleDateFormat.parse("2020-06-14 18:30:00"), 1,1, "EUR"));
+        priceRepository.save(new PriceEntity(3, product, brand , 30.50, simpleDateFormat.parse("2020-06-15 00:00:00"), simpleDateFormat.parse("2020-06-15 11:00:00"), 1,1, "EUR"));
+        priceRepository.save(new PriceEntity(4, product, brand , 38.95, simpleDateFormat.parse("2020-06-15 16:00:00"), simpleDateFormat.parse("2020-12-31 23:59:59"), 1,1, "EUR"));
     }
 }
