@@ -6,6 +6,8 @@ import lombok.*;
 @Getter
 @Setter
 @EqualsAndHashCode
+@NoArgsConstructor
+@AllArgsConstructor
 @ToString
 @Entity
 @Table(name = "PRODUCT")
