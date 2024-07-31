@@ -14,8 +14,10 @@ import java.io.Serializable;
 @Entity
 @Table(name = "PRODUCT")
 public class ProductEntity implements Serializable {
+
+    @TableGenerator(name = "id_gen", initialValue = 35454)
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO, generator = "id_gen")
     private Integer id;
     private String name;
 }

@@ -19,7 +19,7 @@ public class PriceController implements PriceApiDelegate {
 
     @Override
     public ResponseEntity<List<PriceDto>> findPricesByParams(OffsetDateTime date, Integer productId, Integer brandId) {
-        //TODO service
+        //TODO mapper
         priceService.findPricesByParams(date, productId, brandId);
         return new ResponseEntity<>(HttpStatus.OK);
 

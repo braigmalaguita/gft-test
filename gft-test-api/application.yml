@@ -5,8 +5,10 @@ logging:
     org.hibernate: ERROR
     org.hibernate.SQL: DEBUG
     org.hibernate.type.descriptor.sql.BasicBinder: TRACE
+    org.hibernate.type: trace
 spring:
   jpa:
+    show_sql: true
     hibernate:
       ddl-auto: none
     defer-datasource-initialization: true

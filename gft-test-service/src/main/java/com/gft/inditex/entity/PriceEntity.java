@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.io.Serializable;
+import java.util.Date;
 
 @Getter
 @Setter
@@ -24,6 +25,22 @@ public class PriceEntity implements Serializable {
     @ManyToOne
     @JoinColumn(name = "brand_id")
     private BrandEntity brand;
+
     private Double price;
+
+    @Column(name = "start_date")
+    private Date startDate;
+
+    @Column(name = "end_date")
+    private Date endDate;
+
+    @Column(name = "price_list")
+    private Integer priceList;
+
+    private Boolean priority;
+
+    private String curr;
+
+
 
 }
