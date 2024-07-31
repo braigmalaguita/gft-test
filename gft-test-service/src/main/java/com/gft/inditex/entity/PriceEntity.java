@@ -15,6 +15,8 @@ import java.util.Date;
 @Entity
 @Table(name = "PRICE")
 public class PriceEntity implements Serializable {
+    private static final long serialVersionUID = 3L;
+
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -34,7 +36,8 @@ public class PriceEntity implements Serializable {
     @Column(name = "end_date")
     private Date endDate;
 
-    @Column(name = "price_list")
+    @ManyToOne
+    @JoinColumn(name = "price_list")
     private PriceListEntity priceList;
 
     private Integer priority;

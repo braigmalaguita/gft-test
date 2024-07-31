@@ -15,6 +15,8 @@ import java.io.Serializable;
 @Table(name = "PRICE_LIST")
 public class PriceListEntity implements Serializable {
 
+    private static final long serialVersionUID = 3L;
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;

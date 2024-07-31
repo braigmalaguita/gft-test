@@ -14,6 +14,8 @@ import java.io.Serializable;
 @Entity
 @Table(name = "PRODUCT")
 public class ProductEntity implements Serializable {
+    private static final long serialVersionUID = 3L;
+
 
     @TableGenerator(name = "id_gen", initialValue = 35454)
     @Id
