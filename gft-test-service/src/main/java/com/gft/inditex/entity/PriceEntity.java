@@ -35,7 +35,7 @@ public class PriceEntity implements Serializable {
     private Date endDate;
 
     @Column(name = "price_list")
-    private Integer priceList;
+    private PriceListEntity priceList;
 
     private Integer priority;
 

@@ -50,9 +50,7 @@ paths:
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/PriceDto'
+                $ref: '#/components/schemas/PriceDto'
         '400':
           description: Invalid status value
 components:
@@ -69,7 +67,13 @@ components:
           $ref: '#/components/schemas/ProductDto'
         brand:
           $ref: '#/components/schemas/BrandDto'
-        applyDate:
+        priceList:
+          $ref: '#/components/schemas/PriceListDto'
+        startDate:
+          type: string
+          format: date
+          example: '2020-06-14T17:32:28Z'
+        endDate:
           type: string
           format: date
         price:
@@ -84,6 +88,14 @@ components:
         name:
           type: string
           example: zara
+    PriceListDto:
+      properties:
+        id:
+          type: integer
+          example: 10
+        fare:
+          type: string
+          example: 'normal'
     ProductDto:
       properties:
         id:

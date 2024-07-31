@@ -29,7 +29,7 @@ public class PriceServiceImpl implements PriceService {
         log.info(filtered.toString());
         filtered = priorityFilter(filtered);
         log.info(filtered.toString());
-        return Objects.nonNull(filtered) && filtered.isEmpty() ? filtered.get(0) : null;
+        return Objects.nonNull(filtered) && !filtered.isEmpty() ? filtered.get(0) : null;
     }
 
     List<Price> dateFilter(Date date, List<Price> prices) {

@@ -2,9 +2,11 @@ package com.gft.inditex.mapper;
 
 import com.gft.inditex.entity.BrandEntity;
 import com.gft.inditex.entity.PriceEntity;
+import com.gft.inditex.entity.PriceListEntity;
 import com.gft.inditex.entity.ProductEntity;
 import com.gtf.inditex.model.Brand;
 import com.gtf.inditex.model.Price;
+import com.gtf.inditex.model.PriceList;
 import com.gtf.inditex.model.Product;
 import org.mapstruct.Mapper;
 
@@ -26,4 +28,8 @@ public interface PriceMapper {
     Brand toBrand(BrandEntity brandEntity);
 
     BrandEntity toBrandEntity(Brand brand);
+
+    PriceListEntity toPriceListEntity(PriceList priceList);
+
+    PriceListEntity toPriceList(PriceListEntity priceListEntity);
 }
