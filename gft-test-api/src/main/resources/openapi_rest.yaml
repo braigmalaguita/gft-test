@@ -52,7 +52,11 @@ paths:
               schema:
                 $ref: '#/components/schemas/PriceDto'
         '400':
-          description: Invalid status value
+          description: Bad Request
+        '404':
+          description: Price Not found
+        '500':
+          description: Unexpected Error
 components:
   schemas:
     PriceDto:

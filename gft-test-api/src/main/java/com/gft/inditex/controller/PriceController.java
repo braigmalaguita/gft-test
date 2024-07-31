@@ -4,6 +4,7 @@ import com.gft.inditex.api.model.PriceDto;
 import com.gft.inditex.api.rest.PriceApiDelegate;
 import com.gft.inditex.mapper.PriceMapperDto;
 import com.gft.inditex.service.impl.PriceServiceImpl;
+import com.gtf.inditex.exception.PriceNotFoundException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -30,6 +31,8 @@ public class PriceController implements PriceApiDelegate {
         ResponseEntity<PriceDto> response;
         try {
             result = mapperDto.toPriceDto(priceService.findPricesByParams(date, productId, brandId));
+        } catch (PriceNotFoundException e) {
+            statusCode = HttpStatus.NOT_FOUND;
         } catch (Exception e) {
             statusCode = HttpStatus.INTERNAL_SERVER_ERROR;
         }

@@ -1,6 +1,7 @@
 package com.gft.inditex.dao;
 
 import com.gft.inditex.entity.PriceEntity;
+import com.gtf.inditex.exception.PriceNotFoundException;
 import com.gft.inditex.mapper.PriceMapper;
 import com.gft.inditex.repository.PriceRepository;
 import com.gtf.inditex.model.Price;
@@ -20,11 +21,11 @@ public class PriceDao {
     @Autowired
     PriceMapper priceMapper;
 
-    public List<Price> findByParams(Integer productId, Integer brandId) {
+    public List<Price> findByParams(Integer productId, Integer brandId) throws PriceNotFoundException {
         List<PriceEntity> result = priceRepository.findByBrand_IdAndProduct_Id(brandId, productId);
-        //TODO quitar
-        //TODO gestionar excepciones
-        log.info(result.toString());
+        if(result.isEmpty()) {
+            throw new PriceNotFoundException();
+        }
         return priceMapper.toPriceList(result);
     }
 }

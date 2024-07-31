@@ -1,6 +1,7 @@
 package com.gft.inditex.service.impl;
 
 import com.gft.inditex.dao.PriceDao;
+import com.gtf.inditex.exception.PriceNotFoundException;
 import com.gtf.inditex.model.Price;
 import com.gtf.inditex.service.PriceService;
 import lombok.extern.slf4j.Slf4j;
@@ -20,16 +21,16 @@ public class PriceServiceImpl implements PriceService {
     PriceDao dao;
 
     @Override
-    public Price findPricesByParams(Date date, Integer productId, Integer brandId) {
+    public Price findPricesByParams(Date date, Integer productId, Integer brandId) throws PriceNotFoundException {
         List<Price> result =  dao.findByParams(productId, brandId);
         TimeZone.setDefault(TimeZone.getTimeZone("UTC"));
-        //TODO deprecado
-        Date promptedDate = new Date(String.valueOf(date));
+        Date promptedDate = new Date(date.getTime());
         List<Price> filtered = dateFilter(promptedDate, result);
-        log.info(filtered.toString());
         filtered = priorityFilter(filtered);
-        log.info(filtered.toString());
-        return Objects.nonNull(filtered) && !filtered.isEmpty() ? filtered.get(0) : null;
+        if (filtered.isEmpty()) {
+            throw new PriceNotFoundException();
+        }
+        return filtered.get(0);
     }
 
     List<Price> dateFilter(Date date, List<Price> prices) {

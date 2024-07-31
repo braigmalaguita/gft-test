@@ -11,3 +11,9 @@ http://localhost:8080/price?date=2020-06-15T02:32:28Z&productId=35455&brandId=1 
 http://localhost:8080/price?date=2020-06-15T12:32:28Z&productId=35455&brandId=1 should return id 1
 
 http://localhost:8080/price?date=2020-06-15T19:32:28Z&productId=35455&brandId=1 should return id 4
+
+http://localhost:8080/price?date=2021-09-15T19:32:28Z&productId=35455&brandId=1 should return Not Found
+
+http://localhost:8080/price?date=2020-09-15T19:32:28Z&productId=35455&brandId=2 should return Not Found
+
+http://localhost:8080/price?date=2020-13-15T19:32:28Z&productId=35455&brandId=2 should return Bad Request
