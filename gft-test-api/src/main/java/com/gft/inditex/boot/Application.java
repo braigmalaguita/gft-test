@@ -10,7 +10,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 import java.util.TimeZone;
 
-@SpringBootApplication
+@SpringBootApplication()
 @EnableAutoConfiguration
 @ComponentScan(basePackages = {"com.gft.inditex"})
 @EnableJpaRepositories("com.gft.inditex.repository")
