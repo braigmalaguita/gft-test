@@ -25,6 +25,11 @@ Composed by:
 
 Notice that we don't use the same domain objects in controller response. As we did in service module, we return Dtos and we use mappers to convert the equivalent objects.
 
+## Running and Testing project
+- To compile and pass the 8 test just execute maven clean install on main module gtf-test
+- To run the project, to need to run as spring boot project application on the bootable module (api module)
+- This project uses Java 17, you need to add it on your IDE configurations
+
 ###  Demo test URL (GET Method)
 
 ```
