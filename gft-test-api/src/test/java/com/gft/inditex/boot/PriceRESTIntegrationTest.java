@@ -1,7 +1,6 @@
-package com.gft.inditex.controller;
+package com.gft.inditex.boot;
 
 import com.gft.inditex.api.model.PriceDto;
-import com.gft.inditex.boot.Application;
 import org.junit.Test;
 import org.junit.jupiter.api.Assertions;
 import org.junit.runner.RunWith;
@@ -20,7 +19,7 @@ import org.springframework.web.client.RestClientException;
 @ContextConfiguration(classes = {Application.class})
 @TestPropertySource(properties = { "spring.config.location=classpath:application-test.yml" })
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT, classes = {Application.class})
-public class PriceControllerIntTest {
+public class PriceRESTIntegrationTest {
 
     @Autowired
     TestRestTemplate restTemplate;
